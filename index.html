@@ -8,8 +8,8 @@
 <title>Display Webcam Stream</title>
   
 <style>
-#container {
-    margin: 175px auto;
+.container {
+  margin-left: 400px;
     width: 500px;
     height: 375px;
     border: 3px #000 solid;
@@ -22,10 +22,12 @@
 </style>
 </head>
   
-<body>
-<div id="container">
-    <video autoplay="true" id="videoElement">
+<body> 
      
+<video id="video" class="container" autoplay></video>
+<button id="snap">Snap Photo</button>
+<canvas id="canvas"  width="640" height="480"></canvas>
+
     </video>
 </div>
 <script>
@@ -42,6 +44,13 @@ if (navigator.mediaDevices.getUserMedia) {
   });
 }
 
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var video = document.getElementById('video');
+
+document.getElementById("snap").addEventListener("click", function() {
+  context.drawImage(video, 0, 0, 640, 480);
+});
 
 </script>
 </body>
